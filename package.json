@@ -1,0 +1,18 @@
+{
+  "name": "rbxacademybot",
+  "version": "1.0.0",
+  "description": "Roblox Academy Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/roblox-academy/rbxacademybot"
+  },
+  "author": "Joshua De Leon",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
