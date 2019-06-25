@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
+  bot.user.setGame('Roblox Academy|robloxacademy.tk|Listening to all avilable commands')
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
