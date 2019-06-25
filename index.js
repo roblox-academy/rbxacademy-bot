@@ -7,9 +7,28 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (msg.content === '!rbxacademygroup') {
-    msg.reply('The command is a valid command, but not avilable at this time.');
+    msg.reply('The command is valid, but not avilable at this time.');
   }
 });
+
+client.on('message', msg => {
+  if (msg.content === '!rbxacademy') {
+    msg.reply('The command is valid, but not avilable at this time.');
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === '!rbxacademyoffices') {
+    msg.reply('The command is valid, but not avilable at this time.');
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === '!commands') {
+    msg.reply('Here are the commands /n!rbxacademy /n!rbxacademygroup /n!rbxacademyoffices /nModerators /n!kick /n!ban');
+  }
+});
+
 
 client.on('message', message => {
   // Ignore messages that aren't from a guild
