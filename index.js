@@ -120,14 +120,17 @@ client.on('guildMemberRemove', member => {
 });
 
 // Output audit log entries
-guild.fetchAuditLogs()
-  const loggingch = member.guild.channels.find(ch => ch.name ==='admin-logs-and-bot-logs')
+(guild.fetchAuditLogs{()
+  const loggingch = member.guild.channels.find(ch => ch.name ==='admin-logs-and-bot-logs');
   .then(audit => loggingch(audit.entries.first()))
   .catch(console.error);
+});
 
 // Get ban
-guild.fetchBan(message.author)
-  .then(({ user, reason }) => console.log(`${user.tag} was banned for the reason: ${reason}.`))
+(guild.fetchBan{(message.author)
+  const loggingch = member.guild.channels.find(ch => ch.name ==='admin-logs-and-bot-logs');
+  .then(({ user, reason }) => loggingch(`${user.tag} was banned for the reason: ${reason}.`))
   .catch(console.error);
+});
 
 client.login(process.env.BOT_TOKEN);
