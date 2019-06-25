@@ -24,8 +24,28 @@ client.on('message', msg => {
 });
 
 client.on('message', msg => {
+  if (msg.content === '!github') {
+    msg.reply('The Github is: https://github.com/roblox-academy');
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === '!website') {
+    msg.reply('The website is: https://robloxacademy.tk');
+  }
+});
+
+client.on('message', msg => {
   if (msg.content === '!commands') {
-    msg.reply('Here are the commands /n!rbxacademy /n!rbxacademygroup /n!rbxacademyoffices /nModerators /n!kick /n!ban');
+    msg.reply('Here are the commands:
+              !rbxacademy 
+              !rbxacademygroup 
+              !rbxacademyoffices
+              !github
+              !website
+              Moderators and Admins: 
+              !kick 
+              !ban');
   }
 });
 
