@@ -6,8 +6,8 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('Pong!');
+  if (msg.content === '!rbxacademygroup') {
+    msg.reply('The command is a valid command, but not avilable at this time.');
   }
 });
 
@@ -97,6 +97,26 @@ client.on('message', message => {
       message.reply('You didn\'t mention the user to ban!');
     }
   }
+});
+
+// Create an event listener for new guild members
+client.on('guildMemberAdd', member => {
+  // Send the message to a designated channel on a server:
+  const channel = member.guild.channels.find(ch => ch.name === 'welcome');
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
+  // Send the message, mentioning the member
+  channel.send(`Welcome to Roblox Academy, ${member}`);
+});
+
+// Create an event listener for new guild members
+client.on('guildMemberRemove', member => {
+  // Send the message to a designated channel on a server:
+  const channel = member.guild.channels.find(ch => ch.name === 'welcome');
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
+  // Send the message, mentioning the member
+  channel.send(`Bye ${member}, Hope to see you again!`);
 });
 
 client.login(process.env.BOT_TOKEN);
