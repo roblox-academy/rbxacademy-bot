@@ -4,7 +4,7 @@
   "description": "Roblox Academy Discord Bot",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -13,6 +13,8 @@
   "author": "Joshua De Leon",
   "license": "Apache-2.0",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "11.1.0",
+    "request": "2.81.0"
+
   }
 }
