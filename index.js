@@ -37,15 +37,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content === '!commands') {
-    msg.reply('Here are the commands:
-              !rbxacademy 
-              !rbxacademygroup 
-              !rbxacademyoffices
-              !github
-              !website
-              Moderators and Admins: 
-              !kick 
-              !ban');
+    msg.reply('Here are the commands: !rbxacademy !rbxacademygroup !rbxacademyoffices !github !website | Moderators and Admins: !kick !ban');
   }
 });
 
