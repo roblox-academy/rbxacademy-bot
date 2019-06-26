@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
-  bot.user.setGame('Roblox Academy|robloxacademy.tk|Listening to all avilable commands')
+  client.user.setStatus'(online', 'Roblox Academy|robloxacademy.tk|Listening to all avilable commands')
 });
 
 client.on('message', msg => {
