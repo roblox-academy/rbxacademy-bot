@@ -2,19 +2,13 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
+  client.user.setActivity('https://www.robloxacademy.tk', { type: 'PLAYING' });
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('message', msg => {
   if (msg.content === '!rbxacademygroup') {
     msg.reply('The command is valid, but not avilable at this time.');
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === '!prbx') {
-    client.user.setActivity('Roblox Academy', {type: "PLAYING" });
-    msg.reply('Started Playing Roblox Academy');
   }
 });
 
