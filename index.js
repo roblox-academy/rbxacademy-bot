@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
-  client.user.setActivity('https://www.robloxacademy.tk', { type: 'PLAYING' });
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
