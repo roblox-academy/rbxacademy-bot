@@ -1,11 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+client.user.setActivity('Roblox Academy', { type: 'PLAYING' });
 
 client.on('ready', () => {
-  client.user.setEmail('rbx2academy@gmail.com')
-  client.user.setGame('Roblox Academy | robloxacademy.tk')
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame('Roblox Academy');
 });
 
 client.on('message', msg => {
