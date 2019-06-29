@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
+  client.user.setEmail('rbx2academy@gmail.com')
+  client.user.setGame('Roblox Academy | robloxacademy.tk')
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
