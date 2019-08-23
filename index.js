@@ -1,8 +1,54 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const dispatcher = connection.playArbitraryInput('https://ia902908.us.archive.org/24/items/TrollsCANTSTOPTHEFEELING/lagu%20ku/Trolls%20-%20CAN%27T%20STOP%20THE%20FEELING.mp3');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+});
+
+client.on('message', message => {
+  // Voice only works in guilds, if the message does not come from a guild,
+  // we ignore it
+  if (!message.guild) return;
+
+  if (message.content === '!playmusic') {
+    // Only try to join the sender's voice channel if they are in one themselves
+    if (message.member.voiceChannel) {
+      message.member.voiceChannel.join()
+        .then(connection => { // Connection is an instance of VoiceConnection
+          message.reply('I have successfully connected to the channel! Im gonna start playing Cant Stop The Feeling');
+          dispatcher.on('end', () => {
+            // The song has finished
+          });
+          
+          dispatcher.on('error', e => {
+            // Catch any errors that may arise
+            console.log(e);
+          });
+          
+          dispatcher.setVolume(0.5); // Set the volume to 50%
+          dispatcher.setVolume(1); // Set the volume back to 100%
+          
+          console.log(dispatcher.time); // The time in milliseconds that the stream dispatcher has been playing for
+          
+          dispatcher.pause(); // Pause the stream
+          dispatcher.resume(); // Carry on playing
+          
+          dispatcher.end(); // End the dispatcher, emits 'end' event
+        })
+        .catch(console.log);
+    } else {
+      message.reply('You need to join a voice channel first!');
+    }
+  }
+});
+
+client.on('message', message => {
+  // If the message is "what is my avatar"
+  if (message.content === '!whatismyavatar') {
+    // Send the user's avatar URL
+    message.reply(message.author.avatarURL);
+  }
 });
 
 client.on('message', msg => {
