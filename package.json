@@ -18,6 +18,9 @@
     "ffmpeg": "0.0.4",
     "node-opus": "^0.3.2",
     "opusscript": "0.0.7",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "yml": "^1.0.0",
+    "ytdl": "^0.12.0",
+    "ytdl-core": "^0.29.5"
   }
 }

@@ -4,7 +4,7 @@ const fs = require('fs');
 const nodeopus = require('node-opus');
 const opusscript = require('opusscript');
 const client = new Discord.Client();
-const dispatcher = VoiceConnection.playFile('./music/Cant-Stop-The-Feeling.mp3');
+const dispatcher = connection.playFile('./music/Cant-Stop-The-Feeling.mp3');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
