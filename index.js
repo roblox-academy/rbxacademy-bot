@@ -4,6 +4,7 @@ const fs = require('fs');
 const nodeopus = require('node-opus');
 const opusscript = require('opusscript');
 const ytdl = require('ytdl-core');
+const bot = client;
 const client = new Discord.Client();
 const dispatcher = connection.playFile('./music/Cant-Stop-The-Feeling.mp3');
 
@@ -11,41 +12,62 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('message', message => {
-  // Voice only works in guilds, if the message does not come from a guild,
-  // we ignore it
-  if (!message.guild) return;
+client.on('message', message => { 
+  const serverQueue = queue.get(message.guild.id);
+	if (cmd ===`!play`) {
+		const voiceChannel = message.member.voiceChannel;
+		if (!voiceChannel) return;
+		const permissions = voiceChannel.permissionsFor(message.client.user)
+		if (!permissions.has("CONNECT")) return;
+		if (!permissions.has("SPEAK")) return;
 
-  if (message.content === '!playmusic') {
-    // Only try to join the sender's voice channel if they are in one themselves
-    if (message.member.voiceChannel) {
-      message.member.voiceChannel.join()
-        .then(connection => { // Connection is an instance of VoiceConnection
-          message.reply('I have successfully connected to the channel! Im gonna start playing Cant Stop The Feeling');
-          dispatcher.on('end', () => {
-            // The song has finished
-          });
-          
-          dispatcher.on('error', e => {
-            // Catch any errors that may arise
-            console.log(e);
-          });
-          
-          dispatcher.setVolume(0.5); // Set the volume to 50%
-          dispatcher.setVolume(1); // Set the volume back to 100%
-          
-          console.log(dispatcher.time); // The time in milliseconds that the stream dispatcher has been playing for
-          
-          dispatcher.pause(); // Pause the stream
-          dispatcher.resume(); // Carry on playing
-          
-          dispatcher.end(); // End the dispatcher, emits 'end' event
-        })
-        .catch(console.log);
-    } else {
-      message.reply('You need to join a voice channel first!');
-    }
-  }
+		const songInfo = await ytdl.getInfo(args[0]);
+
+		const song = {
+			title: songInfo.title,
+			url: songInfo.video_url
+		};
+
+		if (!serverQueue) {
+			const queueConstruct = {
+				textChannel: message.channel,
+				voiceChannel: voiceChannel,
+				connection: null,
+				songs: [],
+				volume: 5,
+				playing: true
+			};
+			queue.set(message.guild.id, queueConstruct);
+			queueConstruct.songs.push(song);
+			try {
+				var connection = await voiceChannel.join();
+				queueConstruct.connection = connection;
+				play(message.guild, queueConstruct.songs[0]);
+			} catch (error) {
+				console.error(`I was unable to join the voice channel ${voiceChannel}, the error is : ${error}`);
+				return;
+			}
+		} else {
+			serverQueue.songs.push(song);
+			return;
+		}
+
+		return;
+
+		
+	}
+	if (cmd === `${prefix}stop`) {
+		if (!message.member.voiceChannel) return;
+		message.member.voiceChannel.leave();
+		message.channel.send("Player stopped.");
+		return;
+	}
+
+	if (cmd === `${prefix}skip`) {
+		if (!serverQueue) return message.channel.send(`I could not skip anything.`);
+		serverQueue.connection.dispatcher.end();
+		return;
+	}
 });
 
 client.on('message', message => {
