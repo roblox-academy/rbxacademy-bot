@@ -5,44 +5,13 @@ const nodeopus = require('node-opus');
 const opusscript = require('opusscript');
 const ytdl = require('ytdl-core');
 const client = new Discord.Client();
-const dispatcher = connection.playFile('./music/Cant-Stop-The-Feeling.mp3');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('message', message => { 
-    if (!message.guild) return;
-
-    if (message.content === `!join`) {
-      if (message.member.voiceChannel) {
-      message.member.voiceChannel.join()
-        .then(connection =>{
-          message.reply('Connected to the voice channel! Im gonna play Cant Stop The Feeling');
-          dispatcher.on('end', () => {
-            // The song has finished
-          });
-          
-          dispatcher.on('error', e => {
-            // Catch any errors that may arise
-            console.log(e);
-          });
-          
-          dispatcher.setVolume(0.5); // Set the volume to 50%
-          dispatcher.setVolume(1); // Set the volume back to 100%
-          
-          console.log(dispatcher.time); // The time in milliseconds that the stream dispatcher has been playing for
-          
-          dispatcher.pause(); // Pause the stream
-          dispatcher.resume(); // Carry on playing
-          
-          dispatcher.end(); // End the dispatcher, emits 'end' event
-        })
-        .catch(console.log);
-    } else {
-      message.reply('You nned to join a voice channel first!');
-    }
-  }
+client.on('reconnecting', () =>{
+  console.log(`Reconnecting to the bot...`)
 });
 
 client.on('message', message => {
@@ -205,5 +174,42 @@ client.on('guildMemberRemove', member => {
   // Send the message, mentioning the member
   channel.send(`Bye ${member}, Hope to see you again!`);
 });
+
+client.on('channelDelete', message =>{
+  const channel = member.guild.channels.find(ch => ch.name === 'logs');
+  if (!channel) return;
+  channel.send(`One of the channels were deleted! Check the server audit logs for details`)
+});
+
+client.on('channelCreate', message =>{
+  const channel = member.guild.channels.find(ch => ch.name === 'logs');
+  if (!channel) return;
+  channel.send(`A channel has been created! Check the server audit logs for details`)
+});
+
+client.on('channelPinCreate', message =>{
+  const channel = member.guild.channels.find(ch => ch.name === 'logs');
+  if (!channel) return;
+  channel.send(`New pin! Check the server audit logs for details`)
+});
+
+client.on('roleCreate',message =>{
+  const channel = member.guild.channels.find(ch => ch.name === 'logs');
+  if (!channel) return;
+  channel.send(`Someone created a new role! Check the server audit logs for details`)
+});
+
+client.on('messageDelete', message =>{
+  const channel = member.guild.channels.find(ch => ch.name === 'logs');
+  if (!channel) return;
+  channel.send(`Message deleted! Check the server audit logs for details`)
+});
+
+client.on('message', message =>{
+  if (message.content.startsWith('!verify')) {
+    message.send(`One moment ${message.author.name}...`)
+    message.send(`Rover should have verified you!`)
+  }
+})
 
 client.login(process.env.BOT_TOKEN);
