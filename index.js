@@ -176,31 +176,31 @@ client.on('guildMemberRemove', member => {
 });
 
 client.on('channelDelete', message =>{
-  const channel = member.guild.channels.find(ch => ch.name === 'logs');
+  const channel = guild.channels.find(ch => ch.name === 'logs');
   if (!channel) return;
   channel.send(`One of the channels were deleted! Check the server audit logs for details`)
 });
 
 client.on('channelCreate', message =>{
-  const channel = member.guild.channels.find(ch => ch.name === 'logs');
+  const channel = guild.channels.find(ch => ch.name === 'logs');
   if (!channel) return;
   channel.send(`A channel has been created! Check the server audit logs for details`)
 });
 
 client.on('channelPinCreate', message =>{
-  const channel = member.guild.channels.find(ch => ch.name === 'logs');
+  const channel = guild.channels.find(ch => ch.name === 'logs');
   if (!channel) return;
   channel.send(`New pin! Check the server audit logs for details`)
 });
 
 client.on('roleCreate',message =>{
-  const channel = member.guild.channels.find(ch => ch.name === 'logs');
+  const channel = guild.channels.find(ch => ch.name === 'logs');
   if (!channel) return;
   channel.send(`Someone created a new role! Check the server audit logs for details`)
 });
 
 client.on('messageDelete', message =>{
-  const channel = member.guild.channels.find(ch => ch.name === 'logs');
+  const channel = guild.channels.find(ch => ch.name === 'logs');
   if (!channel) return;
   channel.send(`Message deleted! Check the server audit logs for details`)
 });
