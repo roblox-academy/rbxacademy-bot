@@ -1,6 +1,10 @@
 const Discord = require('discord.js');
+const ffmpeg = require('ffmpeg');
+const fs = require('fs');
+const nodeopus = require('node-opus');
+const opusscript = require('opusscript')
 const client = new Discord.Client();
-const dispatcher = connection.playArbitraryInput('https://ia902908.us.archive.org/24/items/TrollsCANTSTOPTHEFEELING/lagu%20ku/Trolls%20-%20CAN%27T%20STOP%20THE%20FEELING.mp3');
+const dispatcher = connection.playFile('./music/Cant-Stop-The-Feeling.mp3');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -48,6 +52,14 @@ client.on('message', message => {
   if (message.content === '!whatismyavatar') {
     // Send the user's avatar URL
     message.reply(message.author.avatarURL);
+  }
+});
+
+client.on('message', message => {
+  // If the message is "what is my avatar"
+  if (message.content === '!ping') {
+    // Send the user's avatar URL
+    msg.reply('Pong');
   }
 });
 
