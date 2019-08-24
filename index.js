@@ -12,7 +12,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('message', message => { 
+client.on('message', async => { 
   const serverQueue = queue.get(message.guild.id);
 	if (cmd ===`!play`) {
 		const voiceChannel = message.member.voiceChannel;
@@ -56,14 +56,14 @@ client.on('message', message => {
 
 		
 	}
-	if (cmd === `${prefix}stop`) {
+	if (cmd === `!stop`) {
 		if (!message.member.voiceChannel) return;
 		message.member.voiceChannel.leave();
 		message.channel.send("Player stopped.");
 		return;
 	}
 
-	if (cmd === `${prefix}skip`) {
+	if (cmd === `!skip`) {
 		if (!serverQueue) return message.channel.send(`I could not skip anything.`);
 		serverQueue.connection.dispatcher.end();
 		return;
