@@ -1,11 +1,11 @@
 const Discord = require('discord.js');
 const ffmpeg = require('ffmpeg');
 const fs = require('fs');
-const connecion =  voiceChannel;
+const connecion = VoiceChannel;
 const nodeopus = require('node-opus');
-const opusscript = require('opusscript')
+const opusscript = require('opusscript');
 const client = new Discord.Client();
-const dispatcher = connection.playFile('./music/Cant-Stop-The-Feeling.mp3');
+const dispatcher = VoiceConnection.playFile('./music/Cant-Stop-The-Feeling.mp3');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
