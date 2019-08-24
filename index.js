@@ -3,6 +3,7 @@ const ffmpeg = require('ffmpeg');
 const fs = require('fs');
 const nodeopus = require('node-opus');
 const opusscript = require('opusscript');
+const ytdl = require('ytdl-core');
 const client = new Discord.Client();
 const dispatcher = connection.playFile('./music/Cant-Stop-The-Feeling.mp3');
 
