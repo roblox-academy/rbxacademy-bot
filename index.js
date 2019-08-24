@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const ffmpeg = require('ffmpeg');
 const fs = require('fs');
-const connecion = VoiceConnection;
 const nodeopus = require('node-opus');
 const opusscript = require('opusscript');
 const client = new Discord.Client();
